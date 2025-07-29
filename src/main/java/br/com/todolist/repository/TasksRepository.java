@@ -11,8 +11,6 @@ import java.util.List;
 public interface TasksRepository extends JpaRepository<Tasks, Long> {
 
 
-    @Query("SELECT t FROM Tb_tasks t ORDER BY t.wasFulfilled")
-    List<Tasks> findAllOrderByWasFulfilledAsc();
-
+    List<Tasks> findAllByOrderByWasFulfilledAsc();
 
 }

@@ -43,7 +43,7 @@ public class TasksService implements ITasksInterface {
 
     @Override
     public List<TaskResponseDto> getAllTasks() {
-        List<Tasks> tasksList = repository.findAllOrderByWasFulfilledAsc();
+        List<Tasks> tasksList = repository.findAllByOrderByWasFulfilledAsc();
         if (tasksList.isEmpty())
             throw new NoSuchElementException("Não há nenhuma tarefa cadastrada!");
 
@@ -118,7 +118,7 @@ public class TasksService implements ITasksInterface {
 
     @Override
     public List<TaskResponseDto> resetAllTasks() {
-        List<Tasks> tasksSearch = repository.findAllOrderByWasFulfilledAsc();
+        List<Tasks> tasksSearch = repository.findAll();
         if (tasksSearch.isEmpty())
             throw new NoSuchElementException("Não há nenhuma tarefa cadastrada!");
         if (tasksSearch.stream().allMatch(Tasks::getWasFulfilled))
